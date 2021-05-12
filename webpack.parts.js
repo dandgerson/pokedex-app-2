@@ -1,4 +1,5 @@
 const path = require('path')
+const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 exports.page = ({ title, template }) => ({
@@ -34,6 +35,7 @@ exports.extractCss = ({ options = {}, loaders = [] } = {}) => ({
         test: /\.(sa|sc|c)ss$/i,
         use: [
           { loader: MiniCssExtractPlugin.loader, options },
+          { loader: 'css-modules-typescript-loader?m' },
           {
             loader: 'css-loader',
             options: {
@@ -51,6 +53,9 @@ exports.extractCss = ({ options = {}, loaders = [] } = {}) => ({
   plugins: [
     new MiniCssExtractPlugin({
       filename: '[name].css',
+    }),
+    new webpack.WatchIgnorePlugin({
+      paths: [/\.m\.(sa|sc|c)ss\.d\.ts$/],
     }),
   ],
 })
@@ -113,6 +118,7 @@ exports.loadJs = () => ({
       {
         test: /\.[tj]sx?$/,
         use: ['ts-loader'],
+        exclude: /node_modules/,
       },
     ],
   },

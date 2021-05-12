@@ -14,8 +14,11 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/react": "^17.0.5",
+    "@types/react-dom": "^17.0.4",
     "autoprefixer": "^10.2.5",
     "css-loader": "^5.2.4",
+    "css-modules-typescript-loader": "^4.0.1",
     "glob": "^7.1.7",
     "html-webpack-plugin": "^5.3.1",
     "mini-css-extract-plugin": "^1.6.0",
