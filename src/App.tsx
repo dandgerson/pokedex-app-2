@@ -9,7 +9,6 @@ const App = () => (
   <div className={cl(s.root)}>
     <div>Hello Flat World!</div>
   </div>
-
 )
 
 export default App

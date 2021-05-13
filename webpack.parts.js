@@ -16,14 +16,10 @@ exports.loadCss = () => ({
     rules: [
       {
         test: /\.(sa|sc|c)ss$/i,
-        use: [
-          'style-loader',
-          'css-loader',
-          'sass-loader',
-        ],
-      }
-    ]
-  }
+        use: ['style-loader', 'css-loader', 'sass-loader'],
+      },
+    ],
+  },
 })
 
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
@@ -33,10 +29,7 @@ exports.extractCss = ({ options = {}, loaders = [] } = {}) => ({
     rules: [
       {
         test: /\.(sa|sc|c)ss$/i,
-        use: [
-          { loader: MiniCssExtractPlugin.loader, options },
-          { loader: 'css-loader' },
-        ].concat(loaders),
+        use: [{ loader: MiniCssExtractPlugin.loader, options }, { loader: 'css-loader' }].concat(loaders),
         exclude: /\.m\.(sa|sc|c)ss$/i,
       },
     ],
@@ -60,7 +53,7 @@ exports.extractCssModules = ({ options = {}, loaders = [] } = {}) => ({
             loader: 'css-loader',
             options: {
               modules: {
-                localIdentName: "[name]_[local]--[hash:base64:3]",
+                localIdentName: '[name]_[local]--[hash:base64:3]',
                 // auto: /\.m\.\w+$/i,
               },
             },
@@ -92,7 +85,6 @@ exports.sassLoader = (options = {}) => ({
   loader: 'sass-loader',
   options,
 })
-
 
 const glob = require('glob')
 const PurgeCssWebpackPlugin = require('purgecss-webpack-plugin')
@@ -131,7 +123,6 @@ exports.loadImages = ({ limit }) => ({
     ],
   },
 })
-
 
 exports.loadJs = () => ({
   module: {
