@@ -35,18 +35,39 @@ exports.extractCss = ({ options = {}, loaders = [] } = {}) => ({
         test: /\.(sa|sc|c)ss$/i,
         use: [
           { loader: MiniCssExtractPlugin.loader, options },
-          { loader: 'css-modules-typescript-loader?m' },
+          { loader: 'css-loader' },
+        ].concat(loaders),
+        exclude: /\.m\.(sa|sc|c)ss$/i,
+      },
+    ],
+  },
+  plugins: [
+    new MiniCssExtractPlugin({
+      filename: '[name].css',
+    }),
+  ],
+})
+
+exports.extractCssModules = ({ options = {}, loaders = [] } = {}) => ({
+  module: {
+    rules: [
+      {
+        test: /\.m\.(sa|sc|c)ss$/i,
+        use: [
+          { loader: MiniCssExtractPlugin.loader, options },
+          { loader: 'css-modules-typescript-loader' },
           {
             loader: 'css-loader',
             options: {
               modules: {
                 localIdentName: "[name]_[local]--[hash:base64:3]",
-                auto: /\.m\.\w+$/i,
+                // auto: /\.m\.\w+$/i,
               },
             },
           },
         ].concat(loaders),
         sideEffects: true,
+        exclude: /node_modules/,
       },
     ],
   },

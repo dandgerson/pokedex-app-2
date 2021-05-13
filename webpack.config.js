@@ -20,6 +20,12 @@ const commonConfig = merge([
       parts.sassLoader(),
     ]
   }),
+  parts.extractCssModules({
+    loaders: [
+      parts.autoprefix(),
+      parts.sassLoader(),
+    ]
+  }),
   parts.loadImages({ limit: 500 }),
 ])
 
