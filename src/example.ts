@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 // first
 const concat: (str1: string, str2: string) => string = (str1, str2) => str1 + str2
 
