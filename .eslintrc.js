@@ -29,9 +29,6 @@ module.exports = {
   },
   settings: {
     'import/resolver': {
-      // webpack: {
-      //   config: 'webpack.config.js',
-      // },
       node: {
         extensions: ['.js', '.jsx', '.ts', '.tsx'],
         paths: ['src'],
