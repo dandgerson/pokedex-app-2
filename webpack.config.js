@@ -11,14 +11,14 @@ const commonConfig = merge([
   },
   parts.page({
     title: 'Pokedex 2',
-    template: path.resolve(__dirname, '/public/index.html')
+    template: path.resolve(__dirname, '/public/index.html'),
   }),
   parts.loadJs(),
   parts.extractCss({
-    loaders: [
-      parts.autoprefix(),
-      parts.sassLoader(),
-    ]
+    loaders: [parts.autoprefix(), parts.sassLoader()],
+  }),
+  parts.extractCssModules({
+    loaders: [parts.autoprefix(), parts.sassLoader()],
   }),
   parts.loadImages({ limit: 500 }),
 ])
@@ -28,12 +28,12 @@ const productionConfig = merge([parts.eliminateUnusedCss()])
 const developmentConfig = merge([
   {
     devtool: 'source-map',
-  }
+  },
 ])
 
 /**
  * Alternate way to get the mode value
- * 
+ *
  * const mode = process.argv[process.argv.indexOf('--mode') + 1]
  */
 const getConfig = (mode) => {
