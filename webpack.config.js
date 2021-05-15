@@ -7,6 +7,7 @@ const commonConfig = merge([
     entry: ['./src'],
     resolve: {
       extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
+      preferRelative: true,
     },
   },
   parts.page({
@@ -28,9 +29,6 @@ const productionConfig = merge([parts.eliminateUnusedCss()])
 const developmentConfig = merge([
   {
     devtool: 'source-map',
-    resolve: {
-      preferRelative: true,
-    },
   },
 ])
 
