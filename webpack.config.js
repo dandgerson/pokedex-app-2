@@ -28,6 +28,9 @@ const productionConfig = merge([parts.eliminateUnusedCss()])
 const developmentConfig = merge([
   {
     devtool: 'source-map',
+    resolve: {
+      preferRelative: true,
+    },
   },
 ])
 
