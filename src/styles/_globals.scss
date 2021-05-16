@@ -3,5 +3,24 @@ body {
   padding: 0;
 
   background: rgb(30, 30, 30);
-  color: rgb(210, 210, 210);
+}
+
+.h1 {
+  font-family: Karla;
+  font-style: normal;
+  font-size: 72px;
+  line-height: 84px;
+  letter-spacing: 4px;
+}
+
+.h3 {
+  font-family: Karla;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 36px;
+  line-height: 42px;
+}
+
+.bold {
+  font-weight: 700;
 }

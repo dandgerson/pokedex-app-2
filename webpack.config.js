@@ -7,7 +7,7 @@ const commonConfig = merge([
     entry: ['./src'],
     resolve: {
       extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
-      preferRelative: true,
+      modules: [path.resolve('./src'), path.resolve('./node_modules')],
     },
   },
   parts.page({

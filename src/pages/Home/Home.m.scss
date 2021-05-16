@@ -1,0 +1,10 @@
+@import 'src/styles/_variables.scss';
+
+.root {
+  background: linear-gradient(180deg, #f5db13 0%, #f2b807 100%);
+
+  height: 100%;
+
+  display: flex;
+  padding-left: $margin-left;
+}
