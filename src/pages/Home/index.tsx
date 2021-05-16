@@ -28,7 +28,7 @@ const Home = () => (
         You can know the type of Pokemon, its strengths, disadvantages and abilities
       </div>
 
-      <Button text="See pokemons" />
+      <Button text="See pokemons" handleClick={() => console.log('click!')} />
     </div>
     <div>image</div>
   </div>
