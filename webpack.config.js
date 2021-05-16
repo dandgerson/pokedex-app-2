@@ -22,12 +22,16 @@ const commonConfig = merge([
     loaders: [parts.autoprefix(), parts.sassLoader()],
   }),
   parts.loadImages({ limit: 500 }),
+  parts.loadFonts(),
 ])
 
 const productionConfig = merge([parts.eliminateUnusedCss()])
 
 const developmentConfig = merge([
   {
+    output: {
+      assetModuleFilename: '[name][ext][query]',
+    },
     devtool: 'source-map',
   },
 ])

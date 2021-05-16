@@ -124,6 +124,17 @@ exports.loadImages = ({ limit }) => ({
   },
 })
 
+exports.loadFonts = () => ({
+  module: {
+    rules: [
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/i,
+        type: 'asset/resource',
+      },
+    ],
+  },
+})
+
 exports.loadJs = () => ({
   module: {
     rules: [
