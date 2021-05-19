@@ -1,6 +1,19 @@
-const pokemons: Array<{
+export interface IPokemon {
+  name_clean: string
+  abilities: string[]
+  stats: any
+  types: string[]
+  img: string
+  name: string
+  base_experience: number
+  height: number
   id: number
-}> = [
+  is_default: boolean
+  order: number
+  weight: number
+}
+
+const pokemons: Array<IPokemon> = [
   {
     name_clean: 'bulbasaur',
     abilities: ['overgrow', 'chlorophyll'],

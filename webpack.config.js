@@ -6,7 +6,7 @@ const commonConfig = merge([
   {
     entry: ['./src'],
     resolve: {
-      extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
+      extensions: ['.js', '.jsx', '.ts', '.tsx', '.json', '.css', '.scss'],
       modules: [path.resolve('./src'), path.resolve('./node_modules')],
     },
     devServer: {
