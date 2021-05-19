@@ -9,6 +9,9 @@ const commonConfig = merge([
       extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
       modules: [path.resolve('./src'), path.resolve('./node_modules')],
     },
+    devServer: {
+      historyApiFallback: true,
+    },
   },
   parts.page({
     title: 'Pokedex 2',
