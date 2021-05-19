@@ -1,12 +1,16 @@
-@import 'src/styles/_variables.scss';
+@import 'styles/variables';
 
 .root {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
   height: 100%;
 
-  padding-left: 157px;
-  background: $yellow-gradient;
+  padding-left: 144px;
 
   position: relative;
+
+  background: $yellow-gradient;
 
   img {
     width: 100%;
@@ -17,7 +21,7 @@
 .cover {
   display: flex;
   flex-direction: column;
-  width: 510px;
+  width: 515px;
 }
 
 .title {
