@@ -2,7 +2,7 @@ export interface IPokemon {
   name_clean: string
   abilities: string[]
   stats: any
-  types: string[]
+  types: Array<'grass' | 'poison' | 'fire' | 'flying' | 'water' | 'bug'>
   img: string
   name: string
   base_experience: number
