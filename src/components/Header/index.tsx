@@ -2,10 +2,11 @@ import React from 'react'
 import { useHistory, useLocation } from 'react-router-dom'
 import cl from 'clsx'
 import SVG from 'react-inlinesvg'
+import isEqual from 'lodash/isEqual'
 
 import logo from 'images/logo.svg'
 
-import routes from 'routes'
+import routes, { PathEnum } from 'routes'
 
 import s from './Header.m.scss'
 
@@ -20,7 +21,7 @@ const Header = () => {
           s.logo,
         )}
         onClick={() => {
-          history.push('/')
+          history.push(PathEnum.HOME)
         }}>
         <SVG src={logo} height='64px' width='158px' />
       </div>
@@ -49,4 +50,4 @@ const Header = () => {
   )
 }
 
-export default Header
+export default React.memo(Header, isEqual)
