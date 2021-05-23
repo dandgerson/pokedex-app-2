@@ -1,47 +1,58 @@
-@import 'src/styles/variables';
+@import 'styles/variables';
+
+.root {
+  background-color: $third;
+  box-shadow: $blur16-box-shadow;
+}
+
+.nav {
+  &_item {
+    border-bottom: 3px solid transparent;
+    transition: border-color $transition-props;
+
+    &-active {
+      border-color: $dark;
+    }
+
+    &:hover {
+      border-color: $dark;
+    }
+  }
+}
 
 .root {
   display: flex;
-  width: 100%;
-  background: $third;
+  align-items: center;
+  justify-content: space-between;
 
-  height: 92px;
-
-  box-shadow: 0px 4px 16px rgba(1, 28, 64, 0.2);
+  height: 93px;
+  padding: 0 144px;
+  z-index: 100;
 }
 
 .logo {
-  width: 25%;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-
-  margin-left: $margin-left;
+  flex: 0.8 1 0;
+  cursor: pointer;
 }
 
-.menu {
+.nav {
   font-family: Karla;
   font-style: normal;
   font-weight: normal;
   font-size: 25px;
   line-height: 29px;
 
-  color: $dark;
-
   display: flex;
-  flex-wrap: wrap;
-  flex: 1 0 0;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
+  flex: 1 1 0;
 
   &_item {
-    border-bottom: 2px solid transparent;
-    transition: border-color $transition-props;
+    padding-bottom: 16px;
     cursor: pointer;
-    padding-bottom: 4px;
 
-    &:hover {
-      border-bottom: 2px solid $dark;
+    &-active {
+      font-weight: bold;
     }
   }
 }

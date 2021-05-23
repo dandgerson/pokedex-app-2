@@ -1,0 +1,31 @@
+@import 'styles/variables';
+
+.item {
+  border-bottom: 1px solid transparent;
+  transition: border-color $transition-props;
+
+  &:hover {
+    border-color: $dark;
+  }
+}
+
+.root {
+  padding-left: 128px;
+  padding-right: 188px;
+
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  height: calc(34px + 22px);
+}
+
+.item {
+  font-family: Karla;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 21px;
+
+  cursor: pointer;
+}

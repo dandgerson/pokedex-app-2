@@ -1,8 +1,30 @@
-body {
-  margin: 0;
-  padding: 0;
+@import 'styles/variables';
 
-  background: rgb(30, 30, 30);
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  background: $primary;
+  width: 100vw;
+  height: 100vh;
+}
+
+body {
+  font-family: $karla, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell',
+    'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  display: flex;
+  justify-content: center;
+  width: 100%;
+
+  line-height: 1.3125;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: normal;
 }
 
 .h1,
@@ -69,6 +91,14 @@ body {
   font-weight: normal;
   font-size: 16px;
   line-height: 20px;
+}
+
+#root {
+  width: 100%;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
 .bold {
