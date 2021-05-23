@@ -1,0 +1,29 @@
+@import 'src/styles/variables';
+
+.root {
+  display: flex;
+  align-items: center;
+  height: 66px;
+  width: fit-content;
+  padding: 0 20px;
+  padding-bottom: 9px;
+
+  background: #73d677;
+  box-shadow: inset 0px -9px 0px rgba(0, 0, 0, 0.18);
+  border-radius: 11px;
+
+  font-family: Karla;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 23px;
+  line-height: 27px;
+
+  cursor: pointer;
+  border: none;
+
+  &:active {
+    box-shadow: inset 0px -6px 0px rgba(0, 0, 0, 0.18);
+    padding-top: 3px;
+    padding-bottom: 6px;
+  }
+}

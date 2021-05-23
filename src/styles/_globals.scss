@@ -3,5 +3,74 @@ body {
   padding: 0;
 
   background: rgb(30, 30, 30);
-  color: rgb(210, 210, 210);
+}
+
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+  margin: 0;
+}
+
+.h1 {
+  font-family: $karla;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 72px;
+  line-height: 84px;
+  letter-spacing: 4px;
+}
+
+.h2 {
+  font-family: $karla;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 32px;
+  line-height: 37px;
+}
+
+.h3 {
+  font-family: $karla;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 21px;
+}
+
+.h4 {
+  font-family: $karla;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 28px;
+}
+
+.h5 {
+  font-family: $karla;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 21px;
+}
+
+.h6 {
+  font-family: $karla;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 14px;
+}
+
+.p {
+  font-family: $source-sans-pro;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 20px;
+}
+
+.bold {
+  font-weight: 700;
 }
