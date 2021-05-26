@@ -1,25 +1,49 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import cl from 'clsx'
 import SVG from 'react-inlinesvg'
 
 import ellipse from 'images/ellipse.svg'
+
+import useData from 'hooks/useData'
 
 import Dropdown from 'components/Dropdown'
 import Card from './Card'
 
 import s from './Pokedex.m.scss'
 
-import pokemons from './pokemons'
+const Pokedex = () => {
+  const [searchValue, setSearchValue] = useState('')
+  const [{ data, isLoading, error }, doFetch] = useData()
+  const [total, setTotal] = useState('')
 
-const Pokedex = () => (
+  // console.log({ data })
+  useEffect(() => {
+    doFetch({
+      endpoint: searchValue ? 'getPokemonByNameOrId' : 'getPokemons',
+      uriSuffix: searchValue.toLowerCase() || '',
+    })
+  }, [searchValue])
+
+  useEffect(() => {
+    data?.total && setTotal(data?.total)
+  }, [data])
+
+  return (
     <div className={cl(s.root)}>
       <div className={cl(s.layout)}>
         <div className={cl(s.header)}>
-          800 <span className={cl('bold')}>Pokemons</span> for you to choose your favorite
+          {total} <span className={cl('bold')}>Pokemons</span> for you to choose your favorite
         </div>
 
         <form className={cl(s.search)}>
-          <input type='text' placeholder='Encuentra tu pokémon...' />
+          <input
+            type='text'
+            placeholder='Encuentra tu pokémon...'
+            value={searchValue}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+              setSearchValue(e.target.value)
+            }}
+          />
         </form>
 
         <div className={cl(s.filters)}>
@@ -28,9 +52,12 @@ const Pokedex = () => (
           <Dropdown />
         </div>
 
+        {isLoading && <div>Loading...</div>}
+        {error?.message && <div>{error.message}</div>}
+
         <div className={cl(s.cards)}>
-          {pokemons.map(pokemon => (
-            <Card key={pokemon.id} data={pokemon} />
+          {data?.pokemons?.map(pokemon => (
+            <Card key={pokemon.name} data={pokemon} />
           ))}
         </div>
 
@@ -42,5 +69,6 @@ const Pokedex = () => (
       </div>
     </div>
   )
+}
 
 export default Pokedex
