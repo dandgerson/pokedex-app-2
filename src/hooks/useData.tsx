@@ -12,10 +12,10 @@ const useData = () => {
   const [data, setData] = useState(null)
 
   const [endpoint, setEndpoint] = useState('')
-  const [query, setQuery] = useState(null)
+  const [query, setQuery] = useState({})
   const [uriSuffix, setUriSuffix] = useState('')
 
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(null)
   const [error, setError] = useState<null | IError>(null)
 
   const doFetch = ({
