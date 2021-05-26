@@ -1,15 +1,24 @@
 import request from 'utils/request'
+import React from 'react'
+
+import { IData } from 'hooks/useData'
 
 class PokeApiHandler {
-  getUriSuffix = (uri: string): string => {
-    return uri.slice(-1) === '/' ? uri.split('/').slice(-2)[0] : uri.split('/').slice(-1)[0]
-  }
+  getUriSuffix = (uri: string): string => uri.slice(-1) === '/'
+    ? uri.split('/').slice(-2)[0]
+    : uri.split('/').slice(-1)[0]
 
-  getPokemons = async ({ setData }) => {
+  getPokemons = async ({ setData }: {
+    setData?: React.Dispatch<React.SetStateAction<IData | null>>,
+    query?: {
+      nameOrId: string
+    },
+    uriSuffix?: string,
+  }) => {
     const pokemonsRes = await request({ endpoint: 'getPokemons' })
 
     Promise.all(
-      pokemonsRes.data.results.map(async ({ url }) => {
+      pokemonsRes.data.results.map(async ({ url }: { url: string }) => {
         const pokemonRes = await this.getPokemonByNameOrId({
           // uriSuffix: this.getUriSuffix(url),
           query: {
@@ -20,17 +29,17 @@ class PokeApiHandler {
         const speciesRes = await this.getPokemonSpecies({
           // uriSuffix: this.getUriSuffix(pokemonRes.data.species.url),
           query: {
-            nameOrId: this.getUriSuffix(pokemonRes.data.species.url),
+            nameOrId: this.getUriSuffix(pokemonRes?.data.species.url),
           },
         })
 
         return {
-          ...pokemonRes.data,
-          color: speciesRes.data.color.name,
+          ...pokemonRes?.data,
+          color: speciesRes?.data.color.name,
         }
       }),
     ).then(result =>
-      setData({
+      setData?.({
         total: pokemonsRes.data.count,
         pokemons: result,
       }),
@@ -40,15 +49,15 @@ class PokeApiHandler {
   getPokemonByNameOrId = async ({
     setData,
     query,
-  }: // uriSuffix: nameOrId,
-    {
-      setData?: (arg0: object) => void
-      uriSuffix?: string
-      query?: object
-    }) => {
+  }: {
+    setData?: React.Dispatch<React.SetStateAction<IData | null>>,
+    query?: {
+      nameOrId: string
+    },
+    uriSuffix?: string,
+  }) => {
     const pokemonRes = await request({
       endpoint: 'getPokemonByNameOrId',
-      // uriSuffix: nameOrId,
       query,
     })
 
@@ -58,14 +67,13 @@ class PokeApiHandler {
       query: {
         nameOrId: this.getUriSuffix(pokemonRes.data.species.url),
       },
-      // uriSuffix: this.getUriSuffix(pokemonRes.data.species.url),
     })
 
     setData({
       pokemons: [
         {
           ...pokemonRes.data,
-          color: speciesRes.data.color.name,
+          color: speciesRes?.data.color.name,
         },
       ],
     })
@@ -76,16 +84,16 @@ class PokeApiHandler {
   getPokemonSpecies = async ({
     setData,
     query,
-  }: // uriSuffix: nameOrId,
-    {
-      setData?: (arg0: object) => void
-      query?: object
-      uriSuffix?: string
-    }) => {
+  }: {
+    setData?: React.Dispatch<React.SetStateAction<IData | null>>,
+    query?: {
+      nameOrId: string
+    },
+    uriSuffix?: string,
+  }) => {
     const response = await request({
       endpoint: 'getPokemonSpecies',
       query,
-      // uriSuffix: nameOrId,
     })
 
     if (!setData) return response

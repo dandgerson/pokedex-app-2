@@ -6,10 +6,9 @@ import useData from 'hooks/useData'
 
 import Card from 'components/Card'
 import s from './Pokemon.m.scss'
-// import t from './main-theme.module.scss'
 
 const Pokemon: React.FC = () => {
-  const { id } = useParams()
+  const { id } = useParams<{ id: string }>()
   const [{ data }, doFetch] = useData()
 
   useEffect(() => {
@@ -24,7 +23,9 @@ const Pokemon: React.FC = () => {
 
   return (
     <div className={cl(s.root)}>
-      {data?.pokemons.length > 0 ? <Card data={data?.pokemons?.[0]} /> : <div>Is Loading...</div>}
+      {data !== null && data.pokemons.length > 0
+        ? <Card data={data.pokemons?.[0]} />
+        : <div>Is Loading...</div>}
     </div>
   )
 }

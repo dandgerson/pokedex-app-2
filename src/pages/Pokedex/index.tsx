@@ -15,7 +15,7 @@ import s from './Pokedex.m.scss'
 const Pokedex = () => {
   const [searchValue, setSearchValue] = useState('')
   const [{ data, isLoading, error }, doFetch] = useData()
-  const [total, setTotal] = useState('')
+  const [total, setTotal] = useState<number | string>('')
   const [debouncedValue] = useDebounce(searchValue)
 
   useEffect(() => {

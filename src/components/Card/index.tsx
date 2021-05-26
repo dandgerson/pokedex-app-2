@@ -5,7 +5,7 @@ import { useHistory, useLocation } from 'react-router-dom'
 
 import s from './Card.m.scss'
 
-interface IData {
+export interface IPokemon {
   id: number
   name: string
   color: string
@@ -26,7 +26,7 @@ interface IData {
   }
 }
 
-const Card = ({ data }: { data: IData }) => {
+const Card = ({ data }: { data: IPokemon }) => {
   const history = useHistory()
   const location = useLocation()
 
