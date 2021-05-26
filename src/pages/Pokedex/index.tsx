@@ -16,7 +16,7 @@ const Pokedex = () => {
   const [{ data, isLoading, error }, doFetch] = useData()
   const [total, setTotal] = useState('')
 
-  // console.log({ data })
+  console.log({ data, isLoading, error })
   useEffect(() => {
     doFetch({
       endpoint: searchValue ? 'getPokemonByNameOrId' : 'getPokemons',

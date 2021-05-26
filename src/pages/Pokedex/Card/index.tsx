@@ -1,10 +1,30 @@
+/* eslint-disable camelcase */
 import React from 'react'
 import cl from 'clsx'
 
 import s from './Card.m.scss'
-import { IPokemon } from '../pokemons'
 
-const Card = ({ data }) => (
+interface IData {
+  name: string
+  color: string
+  stats: {
+    base_stat: string
+  }[]
+  types: {
+    type: {
+      name: string
+    }
+  }[]
+  sprites: {
+    other: {
+      'official-artwork': {
+        front_default: string
+      }
+    }
+  }
+}
+
+const Card = ({ data }: { data: IData }) => (
   <div className={cl(s.root)}>
     <div className={s.infoWrap}>
       <div className={cl('h3', s.titleName)}>{data.name}</div>
@@ -20,7 +40,7 @@ const Card = ({ data }) => (
       </div>
       <div className={cl(s.labelWrap)}>
         {data.types.map(slot => (
-          <span key={slot.type.name} className={cl(s.label, s[`label-${slot.type.name}`])}>
+          <span key={slot.type.name} className={cl(s.label, s[`label-${slot.type.name}` as keyof typeof s])}>
             {slot.type.name}
           </span>
         ))}

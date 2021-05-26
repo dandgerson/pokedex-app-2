@@ -1,33 +1,33 @@
 import request from 'utils/request'
 
 class PokeApiHandler {
-  getUriSuffix = (uri: string): string => {
-    return uri.slice(-1) === '/' ? uri.split('/').slice(-2)[0] : uri.split('/').slice(-1)[0]
-  }
+  getUriSuffix = (uri: string) => uri.slice(-1) === '/'
+    ? uri.split('/').slice(-2)[0]
+    : uri.split('/').slice(-1)[0]
 
   getPokemons = async ({ setData }) => {
     const pokemonsRes = await request({ endpoint: 'getPokemons' })
 
     Promise.all(
-      pokemonsRes.data.results.map(async ({ url }) => {
+      pokemonsRes.data.results.map(async ({ url }: { url: string }) => {
+
         const pokemonRes = await this.getPokemonByNameOrId({
           uriSuffix: this.getUriSuffix(url),
         })
 
         const speciesRes = await this.getPokemonSpecies({
-          uriSuffix: this.getUriSuffix(pokemonRes.data.species.url),
+          uriSuffix: this.getUriSuffix(pokemonRes?.data.species.url),
         })
 
         return {
-          ...pokemonRes.data,
-          color: speciesRes.data.color.name,
+          ...pokemonRes?.data,
+          color: speciesRes?.data.color.name,
         }
       }),
-    ).then(result =>
-      setData({
-        total: pokemonsRes.data.count,
-        pokemons: result,
-      }),
+    ).then(result => setData({
+      total: pokemonsRes.data.count,
+      pokemons: result,
+    }),
     )
   }
 
@@ -53,7 +53,7 @@ class PokeApiHandler {
       pokemons: [
         {
           ...pokemonRes.data,
-          color: speciesRes.data.color.name,
+          color: speciesRes?.data.color.name,
         },
       ],
     })

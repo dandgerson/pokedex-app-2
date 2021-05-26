@@ -2,32 +2,27 @@ import { useEffect, useState } from 'react'
 
 import PokeApiHandler from 'api/pokeApiHandler'
 
-export interface IError {
+const pokeApiHandler = new PokeApiHandler()
+
+interface IError {
   message: string
 }
 
-const pokeApiHandler = new PokeApiHandler()
-
-const useData = (): [
-  {
-    data: object | []
-    isLoading: boolean
-    error: IError | null
-  },
-  (arg0: object) => void,
-] => {
+const useData = () => {
   const [data, setData] = useState(null)
+
   const [endpoint, setEndpoint] = useState('')
   const [query, setQuery] = useState(null)
   const [uriSuffix, setUriSuffix] = useState('')
+
   const [isLoading, setIsLoading] = useState(false)
-  const [error, setError] = useState<IError | null>(null)
+  const [error, setError] = useState<null | IError>(null)
 
   const doFetch = ({
     endpoint: currentEndpoint = '',
     query: currentQuery = null,
     uriSuffix: currentUriSuffix = '',
-  } = {}): void => {
+  } = {}) => {
     currentEndpoint && setEndpoint(currentEndpoint)
     currentQuery && setQuery(currentQuery)
     currentUriSuffix && setUriSuffix(currentUriSuffix)
@@ -37,14 +32,14 @@ const useData = (): [
   useEffect(() => {
     const getData = () => {
       try {
-        pokeApiHandler[endpoint]({
+        pokeApiHandler[endpoint as keyof typeof pokeApiHandler]({
           setData,
           query,
           uriSuffix,
         })
-      } catch (e) {
+      } catch (err) {
         setError({
-          message: e.message,
+          message: err.message,
         })
       } finally {
         setIsLoading(false)
