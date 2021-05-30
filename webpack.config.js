@@ -5,6 +5,9 @@ const parts = require('./webpack.parts')
 const commonConfig = merge([
   {
     entry: ['./src'],
+    output: {
+      publicPath: '/',
+    },
     resolve: {
       extensions: ['.js', '.jsx', '.ts', '.tsx', '.json', '.css', '.scss'],
       modules: [path.resolve('./src'), path.resolve('./node_modules')],
