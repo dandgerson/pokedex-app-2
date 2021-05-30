@@ -1,4 +1,4 @@
-export const config = {
+const config = {
   client: {
     server: {
       protocol: 'https',

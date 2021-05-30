@@ -1,6 +1,6 @@
-import { config } from 'config'
+import config from 'config/index'
 
-const resolvePathnameAndQuery = ({ query, pathname }: { query: object, pathname: string }) =>
+export const resolveParams = ({ query, pathname }: { query: object, pathname: string }) =>
   Object.keys(query).reduce(
     (acc, current) =>
       pathname.includes(`{${current}}`)
@@ -22,7 +22,7 @@ const getUrlWithParamsConfig = ({ endpoint, query = {} }: { endpoint: string; qu
   const url = {
     ...config.client.server,
     ...config.client.endpoint[endpoint as keyof typeof config.client.endpoint].uri,
-    ...resolvePathnameAndQuery({
+    ...resolveParams({
       pathname: config.client.endpoint[endpoint as keyof typeof config.client.endpoint].uri.pathname,
       query,
     }),
